@@ -11,7 +11,7 @@ class ConvertedListWireFrame: ConvertedListWireFrameProtocol
     {
         // Generating module components
         let view: ConvertedListViewProtocol = ConvertedListView()
-        let presenter: protocol<ConvertedListPresenterProtocol, ConvertedListInteractorOutputProtocol> = ConvertedListPresenter()
+        let presenter: ConvertedListPresenterProtocol & ConvertedListInteractorOutputProtocol = ConvertedListPresenter()
         let interactor: ConvertedListInteractorInputProtocol = ConvertedListInteractor()
         let APIDataManager: ConvertedListAPIDataManagerInputProtocol = ConvertedListAPIDataManager()
         let localDataManager: ConvertedListLocalDataManagerInputProtocol = ConvertedListLocalDataManager()

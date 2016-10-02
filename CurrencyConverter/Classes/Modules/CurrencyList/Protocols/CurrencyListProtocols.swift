@@ -11,7 +11,7 @@ protocol CurrencyListViewProtocol: class
     /**
     * Add here your methods for communication PRESENTER -> VIEW
     */
-    func reloadTableViewWithCurrencyList(currencyList : [CurrencyListItem])
+    func reloadTableViewWithCurrencyList(_ currencyList : [CurrencyListItem])
 }
 
 protocol CurrencyListWireFrameProtocol: class
@@ -39,7 +39,7 @@ protocol CurrencyListInteractorOutputProtocol: class
     * Add here your methods for communication INTERACTOR -> PRESENTER
     */
     
-    func fetchedCurrencyList(currencyList : [CurrencyListItem])
+    func fetchedCurrencyList(_ currencyList : [CurrencyListItem])
 }
 
 protocol CurrencyListInteractorInputProtocol: class

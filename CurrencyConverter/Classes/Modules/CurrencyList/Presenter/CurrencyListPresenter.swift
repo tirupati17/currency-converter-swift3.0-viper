@@ -17,7 +17,7 @@ class CurrencyListPresenter: CurrencyListPresenterProtocol, CurrencyListInteract
         self.interactor?.getCurrencyList()
     }
 
-    func fetchedCurrencyList(currencyList : [CurrencyListItem]) {
+    func fetchedCurrencyList(_ currencyList : [CurrencyListItem]) {
         self.view?.reloadTableViewWithCurrencyList(currencyList)
     }
 }

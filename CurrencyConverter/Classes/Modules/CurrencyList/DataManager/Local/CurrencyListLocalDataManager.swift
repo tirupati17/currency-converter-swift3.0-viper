@@ -10,8 +10,8 @@ class CurrencyListLocalDataManager: CurrencyListLocalDataManagerInputProtocol
     init() {}
     
     func loadCurrencyListArrayFromBundle() -> NSArray {
-        let mainBundle = NSBundle.mainBundle()
-        let path = mainBundle.pathForResource("CountryData", ofType: "plist")
+        let mainBundle = Bundle.main
+        let path = mainBundle.path(forResource: "CountryData", ofType: "plist")
         return NSArray(contentsOfFile: path!) as NSArray!
     }
 }

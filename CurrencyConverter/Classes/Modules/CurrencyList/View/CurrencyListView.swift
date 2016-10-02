@@ -17,7 +17,7 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
         configureView()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -25,38 +25,38 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
         navigationItem.title = "Currency List"
     }
     
-    func reloadTableViewWithCurrencyList(currencyList : [CurrencyListItem]) {
+    func reloadTableViewWithCurrencyList(_ currencyList : [CurrencyListItem]) {
         self.listArray = currencyList
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         let numberOfSections = 1
         return numberOfSections
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listArray.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = (self.listTableView!.dequeueReusableCellWithIdentifier("cell\(indexPath.row)")! as UITableViewCell)
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = (self.listTableView!.dequeueReusableCell(withIdentifier: "cell\((indexPath as NSIndexPath).row)")! as UITableViewCell)
         
         self.configureCellForTableView(tableView, withCell: cell, withIndexPath: indexPath)
         return cell
     }
     
-    func configureCellForTableView(tableView: UITableView, withCell cell: UITableViewCell, withIndexPath indexPath: NSIndexPath) {
-        let currencyListItem = self.listArray[indexPath.row] 
+    func configureCellForTableView(_ tableView: UITableView, withCell cell: UITableViewCell, withIndexPath indexPath: IndexPath) {
+        let currencyListItem = self.listArray[(indexPath as NSIndexPath).row] 
         print("currencyListItem  #\(currencyListItem)!")
 
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let currencyListItem = self.listArray[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        let currencyListItem = self.listArray[(indexPath as NSIndexPath).row]
         print("currencyListItem  #\(currencyListItem)!")
     }
 

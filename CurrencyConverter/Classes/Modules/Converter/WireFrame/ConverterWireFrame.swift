@@ -16,7 +16,7 @@ class ConverterWireFrame: ConverterWireFrameProtocol
     {
         // Generating module components
         let view = converterViewFromStoryboard()
-        let presenter: protocol<ConverterPresenterProtocol, ConverterInteractorOutputProtocol> = ConverterPresenter()
+        let presenter: ConverterPresenterProtocol & ConverterInteractorOutputProtocol = ConverterPresenter()
         let interactor: ConverterInteractorInputProtocol = ConverterInteractor()
         let APIDataManager: ConverterAPIDataManagerInputProtocol = ConverterAPIDataManager()
         let localDataManager: ConverterLocalDataManagerInputProtocol = ConverterLocalDataManager()
@@ -38,12 +38,12 @@ class ConverterWireFrame: ConverterWireFrameProtocol
 
     func converterViewFromStoryboard() -> ConverterView {
         let storyboard = mainStoryboard()
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(ConverterViewIdentifier) as! ConverterView
+        let viewController = storyboard.instantiateViewController(withIdentifier: ConverterViewIdentifier) as! ConverterView
         return viewController
     }
 
     func mainStoryboard() -> UIStoryboard {
-        let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         return storyboard
     }
 }

@@ -16,7 +16,7 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         configureView()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -24,36 +24,36 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         navigationItem.title = "Currency Converter"
     }
 
-    func returnCellForIndexPath(indexPath : NSIndexPath) -> UITableViewCell {
-        return self.mainTableView.cellForRowAtIndexPath(indexPath)! as UITableViewCell
+    func returnCellForIndexPath(_ indexPath : IndexPath) -> UITableViewCell {
+        return self.mainTableView.cellForRow(at: indexPath)! as UITableViewCell
     }
     
     func returnAmountField() -> UITextField {
-        return self.returnCellForIndexPath(NSIndexPath.init(forRow: 0, inSection: 0)).viewWithTag(111) as! UITextField
+        return self.returnCellForIndexPath(IndexPath.init(row: 0, section: 0)).viewWithTag(111) as! UITextField
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         let numberOfSections = 1
         return numberOfSections
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 130.0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = (self.mainTableView!.dequeueReusableCellWithIdentifier("cell\(indexPath.row)")! as UITableViewCell)
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell:UITableViewCell = (self.mainTableView!.dequeueReusableCell(withIdentifier: "cell\((indexPath as NSIndexPath).row)")! as UITableViewCell)
         
         self.configureCellForTableView(tableView, withCell: cell, withIndexPath: indexPath)
         return cell
     }
     
-    func configureCellForTableView(tableView: UITableView, withCell cell: UITableViewCell, withIndexPath indexPath: NSIndexPath) {
-        switch (indexPath.row) {
+    func configureCellForTableView(_ tableView: UITableView, withCell cell: UITableViewCell, withIndexPath indexPath: IndexPath) {
+        switch ((indexPath as NSIndexPath).row) {
         case 0:
             let textField:VENCalculatorInputTextField = cell.viewWithTag(111) as! VENCalculatorInputTextField
             
@@ -72,21 +72,21 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("You selected cell #\(indexPath.row)!")
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        print("You selected cell #\((indexPath as NSIndexPath).row)!")
     }
     
-    func calculatorInputView(inputView: VENCalculatorInputView!, didTapKey key: String!) {
+    func calculatorInputView(_ inputView: VENCalculatorInputView!, didTapKey key: String!) {
         let textField = self.returnAmountField()
         textField.insertText(key)
     }
     
-    func calculatorInputViewDidTapBackspace(calculatorInputView: VENCalculatorInputView!) {
+    func calculatorInputViewDidTapBackspace(_ calculatorInputView: VENCalculatorInputView!) {
         let textField = self.returnAmountField()
         textField.deleteBackward()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

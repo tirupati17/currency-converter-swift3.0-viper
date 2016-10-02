@@ -11,7 +11,7 @@ class CurrencyListWireFrame: CurrencyListWireFrameProtocol
     {
         // Generating module components
         let view: CurrencyListViewProtocol = CurrencyListView()
-        let presenter: protocol<CurrencyListPresenterProtocol, CurrencyListInteractorOutputProtocol> = CurrencyListPresenter()
+        let presenter: CurrencyListPresenterProtocol & CurrencyListInteractorOutputProtocol = CurrencyListPresenter()
         let interactor: CurrencyListInteractorInputProtocol = CurrencyListInteractor()
         let APIDataManager: CurrencyListAPIDataManagerInputProtocol = CurrencyListAPIDataManager()
         let localDataManager: CurrencyListLocalDataManagerInputProtocol = CurrencyListLocalDataManager()
