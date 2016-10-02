@@ -9,9 +9,6 @@
 #ifndef CurrencyConverter_Bridging_Header_h
 #define CurrencyConverter_Bridging_Header_h
 
-#import "Flurry.h"
-#import "Appirater.h"
 #import "MBPullDownController.h"
-#import "VENCalculatorInputTextField.h"
 
 #endif /* CurrencyConverter_Bridging_Header_h */
