@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>code</key>
+		<string>AUD</string>
+		<key>symbol‎</key>
+		<string>A$</string>
+		<key>name</key>
+		<string>Australian dollar</string>
+		<key>country</key>
+		<string>Australian</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>BGN</string>
+		<key>symbol‎</key>
+		<string>лв</string>
+		<key>name</key>
+		<string>Bulgarian Lev</string>
+		<key>country</key>
+		<string>Bulgaria</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>BRL</string>
+		<key>symbol‎</key>
+		<string>R$</string>
+		<key>name</key>
+		<string>Brazilian Real</string>
+		<key>country</key>
+		<string>Brazil</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>CAD</string>
+		<key>symbol‎</key>
+		<string>C$</string>
+		<key>name</key>
+		<string>Canadian Dollar</string>
+		<key>country</key>
+		<string>Canada</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>CHF</string>
+		<key>symbol‎</key>
+		<string>Fr</string>
+		<key>name</key>
+		<string>Swiss franc</string>
+		<key>country</key>
+		<string>Switzerland</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>CNY</string>
+		<key>symbol‎</key>
+		<string>¥</string>
+		<key>name</key>
+		<string>Yuan Renminbi</string>
+		<key>country</key>
+		<string>China</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>CZK</string>
+		<key>symbol‎</key>
+		<string>Kč</string>
+		<key>name</key>
+		<string>Czech koruna</string>
+		<key>country</key>
+		<string>Czech Republic</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>DKK</string>
+		<key>symbol‎</key>
+		<string>kr</string>
+		<key>name</key>
+		<string>Danish krone</string>
+		<key>country</key>
+		<string>Denmark, Greenland and the Faroe Islands</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>HKD</string>
+		<key>symbol‎</key>
+		<string>HK$</string>
+		<key>name</key>
+		<string>Hong Kong Dollar</string>
+		<key>country</key>
+		<string>Hong Kong</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>HRK</string>
+		<key>symbol‎</key>
+		<string>kn</string>
+		<key>name</key>
+		<string>Croatian kuna</string>
+		<key>country</key>
+		<string>Croatia</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>HUF</string>
+		<key>symbol‎</key>
+		<string>Ft</string>
+		<key>name</key>
+		<string>Hungarian forint</string>
+		<key>country</key>
+		<string>Hungary</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>IDR</string>
+		<key>symbol‎</key>
+		<string>Rp</string>
+		<key>name</key>
+		<string>Indonesian rupiah</string>
+		<key>country</key>
+		<string>Indonesia</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>ILS</string>
+		<key>symbol‎</key>
+		<string>₪</string>
+		<key>name</key>
+		<string>Israeli Shekel</string>
+		<key>country</key>
+		<string>Israel</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>INR</string>
+		<key>symbol‎</key>
+		<string>₹</string>
+		<key>name</key>
+		<string>Indian rupee</string>
+		<key>country</key>
+		<string>India</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>JPY</string>
+		<key>symbol‎</key>
+		<string>¥</string>
+		<key>name</key>
+		<string>Japanese Yen</string>
+		<key>country</key>
+		<string>Japan</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>KRW</string>
+		<key>symbol‎</key>
+		<string>₩</string>
+		<key>name</key>
+		<string>Korean Republic Won</string>
+		<key>country</key>
+		<string>South Korea</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>MXN</string>
+		<key>symbol‎</key>
+		<string>$</string>
+		<key>name</key>
+		<string>Mexican peso</string>
+		<key>country</key>
+		<string>Mexico</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>MYR</string>
+		<key>symbol‎</key>
+		<string>RM</string>
+		<key>name</key>
+		<string>Malaysian ringgit</string>
+		<key>country</key>
+		<string>Malaysia</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>NOK</string>
+		<key>symbol‎</key>
+		<string>kr</string>
+		<key>name</key>
+		<string>Norwegian krone</string>
+		<key>country</key>
+		<string>Norway</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>NZD</string>
+		<key>symbol‎</key>
+		<string>$</string>
+		<key>name</key>
+		<string>New Zealand dollar</string>
+		<key>country</key>
+		<string>New Zealand </string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>PHP</string>
+		<key>symbol‎</key>
+		<string>₱</string>
+		<key>name</key>
+		<string>Philippines Peso</string>
+		<key>country</key>
+		<string>Philippines</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>PLN</string>
+		<key>symbol‎</key>
+		<string>zł</string>
+		<key>name</key>
+		<string>Poland Zloty</string>
+		<key>country</key>
+		<string>Poland</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>RON</string>
+		<key>symbol‎</key>
+		<string>kr</string>
+		<key>name</key>
+		<string>Denmark Krone</string>
+		<key>country</key>
+		<string>Denmark</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>RUB</string>
+		<key>symbol‎</key>
+		<string>ƒ</string>
+		<key>name</key>
+		<string>Aruba Guilder</string>
+		<key>country</key>
+		<string>Aruba</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>SEK</string>
+		<key>symbol‎</key>
+		<string>kr</string>
+		<key>name</key>
+		<string>Sweden Krona</string>
+		<key>country</key>
+		<string>Sweden</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>SGD</string>
+		<key>symbol‎</key>
+		<string>$</string>
+		<key>name</key>
+		<string>Singapore Dollar</string>
+		<key>country</key>
+		<string>Singapore</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>THB</string>
+		<key>symbol‎</key>
+		<string>฿</string>
+		<key>name</key>
+		<string>Thailand Baht</string>
+		<key>country</key>
+		<string>Thailand</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>TRY</string>
+		<key>symbol‎</key>
+		<string>₺</string>
+		<key>name</key>
+		<string>Turkey Lira</string>
+		<key>country</key>
+		<string>Turkey</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>USD</string>
+		<key>symbol‎</key>
+		<string>$</string>
+		<key>name</key>
+		<string>United States Dollar</string>
+		<key>country</key>
+		<string>United States of America</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>ZAR</string>
+		<key>symbol‎</key>
+		<string>R</string>
+		<key>name</key>
+		<string>South Africa Rand</string>
+		<key>country</key>
+		<string>South Africa</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>EUR</string>
+		<key>symbol‎</key>
+		<string>€</string>
+		<key>name</key>
+		<string>Euro Member Countries</string>
+		<key>country</key>
+		<string>Europe</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<string>GBP</string>
+		<key>symbol‎</key>
+		<string>£</string>
+		<key>name</key>
+		<string>The British Pound</string>
+		<key>country</key>
+		<string>United Kingdom</string>
+	</dict>
+</array>
+</plist>

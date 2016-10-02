@@ -1,0 +1,13 @@
+platform :ios, :deployment_target => "8.0"
+pod 'Flurry-iOS-SDK/FlurrySDK'
+pod 'Appirater', '~> 2.0.4'
+pod 'Google-Mobile-Ads-SDK', '~> 7.5'
+pod 'Firebase/Core'
+pod 'Fabric'
+pod 'Crashlytics'
+pod 'TPKeyboardAvoiding', '~>1.3'
+pod 'Firebase/Core'
+pod 'Mixpanel'
+pod 'Fabric'
+pod 'Crashlytics'
+pod 'VENCalculatorInputView', '~> 1.5'
