@@ -21,21 +21,36 @@ class AppDependencies {
     }
     
     func configureDependencies() {
-        _ = RootWireframe()
+        let rootWireframe = RootWireframe()
+        let currencyListWireFrame = CurrencyListWireFrame()
         
-        /*
+        // Converter
         let converterPresenter = ConverterPresenter()
-        let converterLocalDataManager = ConverterLocalDataManager()
+        let converterAPIDataManager = ConverterAPIDataManager()
         let converterIntractor = ConverterInteractor()
         
         converterIntractor.presenter = converterPresenter
-        converterIntractor.localDatamanager = converterLocalDataManager
+        converterIntractor.APIDataManager = converterAPIDataManager
         
         converterPresenter.interactor = converterIntractor
         converterPresenter.wireFrame = converterWireFrame
         
         converterWireFrame.rootWireframe = rootWireframe
-        converterWireFrame.converterPresenter = converterPresenter
-        */
+        converterWireFrame.currencyListWireFrame = currencyListWireFrame
+        converterWireFrame.presenter = converterPresenter
+ 
+        // CurrencyList
+        let currencyListPresenter = CurrencyListPresenter()
+        let currencyListAPIDataManager = CurrencyListAPIDataManager()
+        let currencyListInteractor = CurrencyListInteractor()
+
+        currencyListInteractor.presenter = currencyListPresenter
+        currencyListInteractor.APIDataManager = currencyListAPIDataManager
+        
+        currencyListPresenter.interactor = currencyListInteractor
+        currencyListPresenter.wireFrame = currencyListWireFrame
+ 
+        currencyListWireFrame.currencyListPresenter = currencyListPresenter
+        currencyListWireFrame.converterPresenter = converterPresenter
     }
 }

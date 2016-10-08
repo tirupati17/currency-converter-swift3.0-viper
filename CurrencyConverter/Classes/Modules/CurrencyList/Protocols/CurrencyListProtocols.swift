@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CurrencyListViewProtocol: class
 {
@@ -16,7 +17,8 @@ protocol CurrencyListViewProtocol: class
 
 protocol CurrencyListWireFrameProtocol: class
 {
-    func presentCurrencyListModule(fromView view: AnyObject)
+    func presentCurrencyListModule(fromView view: UIViewController)
+    func dismissCurrencyListWithSelectedData(_ converterItem : CurrencyListItem)
     /**
     * Add here your methods for communication PRESENTER -> WIREFRAME
     */
@@ -30,6 +32,7 @@ protocol CurrencyListPresenterProtocol: class
     /**
     * Add here your methods for communication VIEW -> PRESENTER
     */
+    func selectCurrencyListItem(_ currencyListItem : CurrencyListItem)
     func updateView()
 }
 

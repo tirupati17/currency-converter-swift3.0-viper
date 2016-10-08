@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 let ConverterViewIdentifier = "ConverterView"
 
@@ -11,31 +12,24 @@ class ConverterWireFrame: ConverterWireFrameProtocol
 {
     var rootWireframe : RootWireframe?
     var converterView : ConverterView?
+    var currencyListWireFrame : CurrencyListWireFrame?
+    var presenter: ConverterPresenterProtocol & ConverterInteractorOutputProtocol = ConverterPresenter()
     
-    func presentConverterModule(fromView window: AnyObject)
-    {
-        // Generating module components
+    func presentConverterModule(fromView window: AnyObject) {
         let view = converterViewFromStoryboard()
-        let presenter: ConverterPresenterProtocol & ConverterInteractorOutputProtocol = ConverterPresenter()
-        let interactor: ConverterInteractorInputProtocol = ConverterInteractor()
-        let APIDataManager: ConverterAPIDataManagerInputProtocol = ConverterAPIDataManager()
-        let localDataManager: ConverterLocalDataManagerInputProtocol = ConverterLocalDataManager()
-        let wireFrame: ConverterWireFrameProtocol = ConverterWireFrame()
         
         // Connecting
         view.presenter = presenter
         presenter.view = view
-        presenter.wireFrame = wireFrame
-        presenter.interactor = interactor
-        interactor.presenter = presenter
-        interactor.APIDataManager = APIDataManager
-        interactor.localDatamanager = localDataManager
+
         converterView = view
-        
         rootWireframe?.showRootViewController(view, inWindow: window as! UIWindow)
     }
     
-
+    func showCurrencyListViewController() {
+        self.currencyListWireFrame?.presentCurrencyListModule(fromView: converterView!)
+    }
+    
     func converterViewFromStoryboard() -> ConverterView {
         let storyboard = mainStoryboard()
         let viewController = storyboard.instantiateViewController(withIdentifier: ConverterViewIdentifier) as! ConverterView

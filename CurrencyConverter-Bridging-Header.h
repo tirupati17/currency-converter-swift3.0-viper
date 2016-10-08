@@ -9,6 +9,4 @@
 #ifndef CurrencyConverter_Bridging_Header_h
 #define CurrencyConverter_Bridging_Header_h
 
-#import "MBPullDownController.h"
-
 #endif /* CurrencyConverter_Bridging_Header_h */

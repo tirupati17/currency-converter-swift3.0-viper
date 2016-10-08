@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ConverterViewProtocol: class
 {
@@ -11,11 +12,15 @@ protocol ConverterViewProtocol: class
     /**
     * Add here your methods for communication PRESENTER -> VIEW
     */
+    func reloadTableViewWithData(_ converterItems: [ConverterItem])
+    func initWithBaseAndReload(currencyName: String, country: String, code: String, symbol: String, amount: String)
+    func noContentFromServer()
 }
 
 protocol ConverterWireFrameProtocol: class
 {
     func presentConverterModule(fromView window: AnyObject)
+    func showCurrencyListViewController()
     /**
     * Add here your methods for communication PRESENTER -> WIREFRAME
     */
@@ -29,6 +34,9 @@ protocol ConverterPresenterProtocol: class
     /**
     * Add here your methods for communication VIEW -> PRESENTER
     */
+    func getCurrencyListWithData(_ baseConverterItem: ConverterItem)
+    func showCurrencyListView()
+    func loadView()
 }
 
 protocol ConverterInteractorOutputProtocol: class
@@ -36,6 +44,8 @@ protocol ConverterInteractorOutputProtocol: class
     /**
     * Add here your methods for communication INTERACTOR -> PRESENTER
     */
+    func initWithBaseConverterItem(_ converterItem: ConverterItem)
+    func fetchedConvertedCurrency(_ convertedCurrency:[ConverterItem])
 }
 
 protocol ConverterInteractorInputProtocol: class
@@ -46,6 +56,8 @@ protocol ConverterInteractorInputProtocol: class
     /**
     * Add here your methods for communication PRESENTER -> INTERACTOR
     */
+    func getCurrencyWithData(_ baseConverterItem: ConverterItem)
+    func initWithBaseCurrencyAndLoad()
 }
 
 protocol ConverterDataManagerInputProtocol: class
@@ -60,6 +72,7 @@ protocol ConverterAPIDataManagerInputProtocol: class
     /**
     * Add here your methods for communication INTERACTOR -> APIDATAMANAGER
     */
+    func fetchCurrencyFromServerWithData(_ baseCurrencyCode: String, completion: ((AnyObject) -> Void)!, failed:((AnyObject) -> Void)!)
 }
 
 protocol ConverterLocalDataManagerInputProtocol: class

@@ -20,4 +20,8 @@ class CurrencyListPresenter: CurrencyListPresenterProtocol, CurrencyListInteract
     func fetchedCurrencyList(_ currencyList : [CurrencyListItem]) {
         self.view?.reloadTableViewWithCurrencyList(currencyList)
     }
+    
+    func selectCurrencyListItem(_ currencyListItem : CurrencyListItem) {
+        self.wireFrame?.dismissCurrencyListWithSelectedData(currencyListItem)
+    }
 }

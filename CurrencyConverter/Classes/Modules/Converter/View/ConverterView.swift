@@ -5,12 +5,30 @@
 
 import Foundation
 import UIKit
+import Refresher
 
-class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegate, VENCalculatorInputViewDelegate
+extension Collection {
+    subscript (safe index: Index) -> Iterator.Element? {
+        return index >= startIndex && index < endIndex ? self[index] : nil
+    }
+}
+
+class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegate
 {
     var presenter: ConverterPresenterProtocol?
-    @IBOutlet var mainTableView : UITableView!
+    var baseConverterItem : ConverterItem!
     
+    @IBOutlet var mainTableView : UITableView!
+    @IBOutlet var baseAmountTextField : UITextField!
+    @IBOutlet var baseCountryImageView : UIImageView!
+    @IBOutlet var baseCountryCodeLabel : UILabel!
+    @IBOutlet var baseCountryNameLabel : UILabel!
+    @IBOutlet var baseCurrencySymbolLabel : UILabel!
+    
+    required init(coder decoder: NSCoder) {
+        super.init(coder: decoder)!
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -19,18 +37,38 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
     
+    // MARK: Methods
+
     func configureView() {
         navigationItem.title = "Currency Converter"
-    }
-
-    func returnCellForIndexPath(_ indexPath : IndexPath) -> UITableViewCell {
-        return self.mainTableView.cellForRow(at: indexPath)! as UITableViewCell
+        self.addPullToRefresh()
+        self.presenter?.loadView()
     }
     
-    func returnAmountField() -> UITextField {
-        return self.returnCellForIndexPath(IndexPath.init(row: 0, section: 0)).viewWithTag(111) as! UITextField
+    func addPullToRefresh() {
+        let pacmanAnimator = PacmanAnimator(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 80))
+        self.mainTableView.addPullToRefreshWithAction({
+            self.baseConverterItem.isFreshLoad = true
+            self.presenter?.getCurrencyListWithData(self.baseConverterItem)
+        }, withAnimator: pacmanAnimator)
     }
+    
+    func convertAmountWithBaseValue(amount : String) {
+        self.baseConverterItem.amount = amount
+        self.baseConverterItem.isFreshLoad = false
+        self.presenter?.getCurrencyListWithData(self.baseConverterItem)
+    }
+    
+    @IBAction func showCurrecnyList(sender: UIButton) {
+        self.presenter?.showCurrencyListView()
+    }
+    
+    // MARK: UITableViewDelegate
 
     func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         let numberOfSections = 1
@@ -38,52 +76,56 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.baseConverterItem.convertedList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return 130.0
+        return 65
     }
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = (self.mainTableView!.dequeueReusableCell(withIdentifier: "cell\((indexPath as NSIndexPath).row)")! as UITableViewCell)
+        var identifier : String
+        identifier = "cell"
+        
+        let cell:UITableViewCell = (self.mainTableView!.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as UITableViewCell)
         
         self.configureCellForTableView(tableView, withCell: cell, withIndexPath: indexPath)
         return cell
     }
     
     func configureCellForTableView(_ tableView: UITableView, withCell cell: UITableViewCell, withIndexPath indexPath: IndexPath) {
-        switch ((indexPath as NSIndexPath).row) {
-        case 0:
-            let textField:VENCalculatorInputTextField = cell.viewWithTag(111) as! VENCalculatorInputTextField
+        if let converterItem = self.baseConverterItem.convertedList[safe: (indexPath as NSIndexPath).row] {
+            let amountTextField:UITextField = cell.viewWithTag(222) as! UITextField
+            let codeLabel:UILabel = cell.viewWithTag(223) as! UILabel
+            let imageView:UIImageView = cell.viewWithTag(225) as! UIImageView
+            let symbolLabel:UILabel = cell.viewWithTag(221) as! UILabel
+            let countryNameLabel:UILabel = cell.viewWithTag(224) as! UILabel
             
-            let inputView = VENCalculatorInputView()
-            textField.inputView = inputView
-            inputView.delegate = self
+            let formatter = NumberFormatter()
+            formatter.locale = Locale.current //current locale based on user device setting
+            formatter.usesGroupingSeparator = true
+            formatter.numberStyle = .currency
+            let formattedCurrency = formatter.string(from: NSNumber.init(value: Double(converterItem.convertedAmount)!))
             
-            break;
-        case 1:
-            let textField:UITextField = cell.viewWithTag(221) as! UITextField
-            textField.delegate = self
-
-            break;
-        default:
-            break;
+            amountTextField.text = (formattedCurrency?.replacingOccurrences(of: Locale.current.currencySymbol!, with: ""))! as String
+            codeLabel.text = converterItem.code
+            symbolLabel.text = converterItem.symbol
+            countryNameLabel.text = "1 \(self.baseConverterItem.code) = \( NSString(format : "%.2f", Double(converterItem.amount)!) as String) \(converterItem.currencyName)"
+            imageView.image = UIImage.init(named: "\(converterItem.country).png")
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-        print("You selected cell #\((indexPath as NSIndexPath).row)!")
+        if let converterItem = self.baseConverterItem.convertedList[safe: (indexPath as NSIndexPath).row] {
+            self.baseConverterItem.amount = baseAmountTextField.text!
+            self.initWithBaseAndReload(currencyName: converterItem.currencyName, country: converterItem.country, code: converterItem.code, symbol: converterItem.symbol, amount: self.baseConverterItem.amount)
+        }
     }
     
-    func calculatorInputView(_ inputView: VENCalculatorInputView!, didTapKey key: String!) {
-        let textField = self.returnAmountField()
-        textField.insertText(key)
-    }
+    // MARK: UITextFieldDelegate
     
-    func calculatorInputViewDidTapBackspace(_ calculatorInputView: VENCalculatorInputView!) {
-        let textField = self.returnAmountField()
-        textField.deleteBackward()
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true;
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -91,23 +133,43 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         return true
     }
     
-    /*
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return true;
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let filtered = string.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString:"0123456789.").invertedSet).joinWithSeparator("")
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let filtered = string.components(separatedBy: NSCharacterSet(charactersIn:"0123456789.").inverted).joined(separator: "")
         if (string == filtered) {
-            var txtAfterUpdate: NSString = textField.text! as NSString
-            txtAfterUpdate = txtAfterUpdate.stringByReplacingCharactersInRange(range, withString: string)
-            
-            print("Double value #\(txtAfterUpdate.doubleValue)!")
+            let txtAfterUpdate: NSString = textField.text! as NSString
+            self.convertAmountWithBaseValue(amount: txtAfterUpdate.replacingCharacters(in: range, with: string))
             return true
         } else {
             return false
         }
     }
-    */
+    
+    /**
+     * Methods for communication PRESENTER -> VIEW
+     */
+    
+    func initWithBaseAndReload(currencyName: String, country: String, code: String, symbol: String, amount: String) {
+        self.baseConverterItem = ConverterItem(currencyName: currencyName, country: country, code: code, symbol: symbol, amount: self.baseAmountTextField.text!)
+        
+        self.baseCountryImageView.image = UIImage.init(named: "\(self.baseConverterItem.country).png")
+        self.baseCountryCodeLabel.text = self.baseConverterItem.code
+        self.baseCountryNameLabel.text = self.baseConverterItem.country
+        self.baseCurrencySymbolLabel.text = self.baseConverterItem.symbol
+        self.baseAmountTextField.text = self.baseConverterItem.amount
+        
+        self.mainTableView.startPullToRefresh()
+    }
+    
+    func reloadTableViewWithData(_ converterItems: [ConverterItem]) {
+        self.mainTableView.stopPullToRefresh()
+        
+        self.baseConverterItem.convertedList = converterItems
+        self.mainTableView.reloadData()
+        self.baseAmountTextField.becomeFirstResponder()
+    }
+    
+    func noContentFromServer() {
+        self.mainTableView.stopPullToRefresh()
+    }
 }
 

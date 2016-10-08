@@ -19,15 +19,11 @@ class CurrencyListInteractor: CurrencyListInteractorInputProtocol
         var currencyListItems = [CurrencyListItem]()
         for currency in currencyListArray {
             if ((currency as? NSDictionary) != nil) {
-                let currencyName = currency as? [String:Any]
-                let country = currency as? [String:Any]
-                let code = currency as? [String:Any]
-                let symbol = currency as? [String:Any]
-
-                let currencyListItem = CurrencyListItem(currencyName: currencyName!["currencyName"] as! String ,
-                                                        country: country!["country"] as! String,
-                                                        code: code!["code"] as! String,
-                                                        symbol: symbol!["symbol"] as! String)
+                let object = currency as? [String:Any]
+                let currencyListItem = CurrencyListItem(currencyName: object!["name"] as! String ,
+                                                        country: object!["country"] as! String,
+                                                        code: object!["code"] as! String,
+                                                        symbol: object!["symbol"] as! String)
                 currencyListItems.append(currencyListItem)
             }
         }
