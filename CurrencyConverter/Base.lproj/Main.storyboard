@@ -71,7 +71,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1.000" placeholder="Enter amount" textAlignment="center" minimumFontSize="17" id="0Om-Y8-vLt">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="111" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" placeholder="Enter amount" textAlignment="center" minimumFontSize="17" id="0Om-Y8-vLt">
                                         <frame key="frameInset" height="75" maxX="68"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="35"/>
@@ -128,9 +128,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="9Rw-jY-MZK" customClass="GADBannerView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="65" id="RPr-ml-CJw">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                        <rect key="frame" x="0.0" y="78" width="375" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RPr-ml-CJw" id="gvc-g1-mn4">
                                             <frame key="frameInset" width="375" height="65"/>
@@ -208,6 +213,7 @@
                     <navigationItem key="navigationItem" id="3BI-YQ-hli"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="bannerView" destination="9Rw-jY-MZK" id="6ph-YT-2Vr"/>
                         <outlet property="baseAmountTextField" destination="0Om-Y8-vLt" id="Jmp-dc-fBF"/>
                         <outlet property="baseCountryCodeLabel" destination="txa-Ss-BuK" id="GcA-cR-A4Y"/>
                         <outlet property="baseCountryImageView" destination="z56-f0-cLS" id="OaH-WY-f3u"/>
@@ -232,11 +238,14 @@
                                 <frame key="frameInset" minY="64" maxY="-20"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="pjA-vT-c8C">
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" showsCancelButton="YES" id="pjA-vT-c8C">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="CgZ-17-8c1" id="t7j-gX-t2o"/>
+                                    </connections>
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="QfE-9Y-OQ7">

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Appirater
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         appDependencies.installRootViewControllerIntoWindow(window!)
+        self.defaultInitialization()
+
         return true
     }
 
@@ -38,7 +43,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
 
     }
-
+    
+    func defaultInitialization() {
+        Fabric.with([Crashlytics.self])
+        Fabric.with([Answers.self])
+        
+        Appirater.setAppId("1163490933")
+        Appirater.setDaysUntilPrompt(7)
+        Appirater.setUsesUntilPrompt(5)
+        Appirater.setSignificantEventsUntilPrompt(-1)
+        Appirater.setTimeBeforeReminding(2)
+        Appirater.setDebug(false)
+        Appirater.appLaunched(true)
+    }
 
 }
 

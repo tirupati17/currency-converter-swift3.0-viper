@@ -2,15 +2,12 @@ platform :ios, :deployment_target => "9.0"
 use_frameworks!
 
 pod 'Flurry-iOS-SDK/FlurrySDK'
-pod 'Firebase/Core'
 pod 'Fabric'
 pod 'Crashlytics'
-pod 'Mixpanel'
 
 pod 'Appirater', '~> 2.0.4'
 pod 'Google-Mobile-Ads-SDK', '~> 7.5'
 
-pod 'TPKeyboardAvoiding', '~>1.3'
 pod 'Alamofire', '~> 4.0'
 pod 'SwiftyJSON'
 pod 'Refresher'

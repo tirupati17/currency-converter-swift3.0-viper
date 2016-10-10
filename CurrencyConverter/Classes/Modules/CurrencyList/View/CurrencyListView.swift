@@ -6,12 +6,18 @@
 import Foundation
 import UIKit
 
-class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldDelegate
+class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldDelegate, UISearchBarDelegate
 {
     var presenter: CurrencyListPresenterProtocol?
-    @IBOutlet var listTableView : UITableView!
     var listArray = [CurrencyListItem]()
-    
+    var searchedListArray = [CurrencyListItem]()
+    var isSearch = Bool()
+    @IBOutlet var listTableView : UITableView!
+
+    required init(coder decoder: NSCoder) {
+        super.init(coder: decoder)!
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -37,7 +43,11 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.listArray.count
+        if isSearch {
+            return self.searchedListArray.count
+        } else {
+            return self.listArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
@@ -52,7 +62,13 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
     }
     
     func configureCellForTableView(_ tableView: UITableView, withCell cell: UITableViewCell, withIndexPath indexPath: IndexPath) {
-        if let currencyListItem = self.listArray[safe: (indexPath as NSIndexPath).row] {
+        var currencyListItems = [CurrencyListItem]()
+        if isSearch {
+            currencyListItems = self.searchedListArray
+        } else {
+            currencyListItems = self.listArray
+        }
+        if let currencyListItem = currencyListItems[safe: (indexPath as NSIndexPath).row] {
             let codeLabel:UILabel = cell.viewWithTag(113) as! UILabel
             let imageView:UIImageView = cell.viewWithTag(111) as! UIImageView
             let symbolLabel:UILabel = cell.viewWithTag(114) as! UILabel
@@ -66,9 +82,33 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
-        if let currencyListItem = self.listArray[safe: (indexPath as NSIndexPath).row] {
+        var currencyListItems = [CurrencyListItem]()
+        if isSearch {
+            currencyListItems = self.searchedListArray
+        } else {
+            currencyListItems = self.listArray
+        }
+        if let currencyListItem = currencyListItems[safe: (indexPath as NSIndexPath).row] {
             self.presenter?.selectCurrencyListItem(currencyListItem)
         }
+    }
+
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.isSearch = true
+        self.searchedListArray = self.listArray.filter({ (currencyListItem) -> Bool in
+            if searchText.isEmpty {
+                return true
+            } else {
+                return (currencyListItem.country.lowercased().contains(searchText.lowercased())) || (currencyListItem.code.lowercased().contains(searchText.lowercased())) || (currencyListItem.currencyName.lowercased().contains(searchText.lowercased()))
+            }
+        })
+        self.listTableView.reloadData()
+    }
+
+    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.isSearch = false
+        self.listTableView.reloadData()
+        searchBar.resignFirstResponder()
     }
 
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26F3F010A4873283AF976215 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF3BBB1FF40F085176B5B5C3 /* Pods.framework */; };
+		D50297FA1DAB7961005132A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D50297F91DAB7961005132A5 /* GoogleService-Info.plist */; };
 		D51D92F71D9CFB72007F1D48 /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51D92F61D9CFB72007F1D48 /* AppDependencies.swift */; };
 		D51D92FB1D9D2D9C007F1D48 /* rightArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D92FA1D9D2D9C007F1D48 /* rightArrow@2x.png */; };
 		D52D24C31DA775AB00EF6EAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D52D24C21DA775AB00EF6EAB /* Assets.xcassets */; };
@@ -255,6 +256,7 @@
 /* Begin PBXFileReference section */
 		87EBB8531C0C612709FDD8BA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		ACA74C013EFD97C370594CDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D50297F91DAB7961005132A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D51D92F61D9CFB72007F1D48 /* AppDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		D51D92F81D9D0CAB007F1D48 /* CurrencyConverter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CurrencyConverter-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		D51D92FA1D9D2D9C007F1D48 /* rightArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightArrow@2x.png"; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 		D56186171D9BEC9A003F95F2 /* SupportedFiles */ = {
 			isa = PBXGroup;
 			children = (
+				D50297F91DAB7961005132A5 /* GoogleService-Info.plist */,
 				D561869D1D9C59F5003F95F2 /* Info.plist */,
 				D51D92F81D9D0CAB007F1D48 /* CurrencyConverter-Bridging-Header.h */,
 			);
@@ -1074,6 +1077,7 @@
 				D56184191D9BAFE4003F95F2 /* Resources */,
 				27636658A81B868E165E0E73 /* Embed Pods Frameworks */,
 				AACDEADEA72ECDA52DDCBD67 /* Copy Pods Resources */,
+				D5DAB0341DA934100032C871 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1202,6 +1206,7 @@
 				D56185CA1D9BD01D003F95F2 /* Switzerland.png in Resources */,
 				D56185621D9BD01D003F95F2 /* Ghana.png in Resources */,
 				D56185791D9BD01D003F95F2 /* Kiribati.png in Resources */,
+				D50297FA1DAB7961005132A5 /* GoogleService-Info.plist in Resources */,
 				D56185991D9BD01D003F95F2 /* Mozambique.png in Resources */,
 				D56185741D9BD01D003F95F2 /* Jamaica.png in Resources */,
 				D56185271D9BD01D003F95F2 /* Argentina.png in Resources */,
@@ -1440,6 +1445,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D5DAB0341DA934100032C871 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run e50ba22faa93a6114e5977a2daee28eb787a15b8 12fcca6ef52c7e25f5ed38468ca26375f51a6b36c55d3d8c7122c18268535675";
 		};
 /* End PBXShellScriptBuildPhase section */
 

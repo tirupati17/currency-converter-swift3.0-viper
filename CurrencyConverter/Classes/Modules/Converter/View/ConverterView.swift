@@ -6,6 +6,7 @@
 import Foundation
 import UIKit
 import Refresher
+import GoogleMobileAds
 
 extension Collection {
     subscript (safe index: Index) -> Iterator.Element? {
@@ -24,7 +25,8 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     @IBOutlet var baseCountryCodeLabel : UILabel!
     @IBOutlet var baseCountryNameLabel : UILabel!
     @IBOutlet var baseCurrencySymbolLabel : UILabel!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
+
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)!
     }
@@ -48,6 +50,11 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         navigationItem.title = "Currency Converter"
         self.addPullToRefresh()
         self.presenter?.loadView()
+        
+        //google ads
+        bannerView.adUnitID = "ca-app-pub-4961045217927492~1854345968"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
     
     func addPullToRefresh() {
@@ -64,6 +71,17 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         self.presenter?.getCurrencyListWithData(self.baseConverterItem)
     }
     
+    func formatCurrency(_ string: String) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale.current
+        let numberFromField = NSString(string: string).doubleValue
+        let temp = formatter.string(from: NSNumber(value: numberFromField))
+        return String(temp!.characters.dropFirst())
+    }
+    
+    // MARK: Actions
+
     @IBAction func showCurrecnyList(sender: UIButton) {
         self.presenter?.showCurrencyListView()
     }
@@ -101,13 +119,7 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
             let symbolLabel:UILabel = cell.viewWithTag(221) as! UILabel
             let countryNameLabel:UILabel = cell.viewWithTag(224) as! UILabel
             
-            let formatter = NumberFormatter()
-            formatter.locale = Locale.current //current locale based on user device setting
-            formatter.usesGroupingSeparator = true
-            formatter.numberStyle = .currency
-            let formattedCurrency = formatter.string(from: NSNumber.init(value: Double(converterItem.convertedAmount)!))
-            
-            amountTextField.text = (formattedCurrency?.replacingOccurrences(of: Locale.current.currencySymbol!, with: ""))! as String
+            amountTextField.text = self.formatCurrency(converterItem.convertedAmount)
             codeLabel.text = converterItem.code
             symbolLabel.text = converterItem.symbol
             countryNameLabel.text = "1 \(self.baseConverterItem.code) = \( NSString(format : "%.2f", Double(converterItem.amount)!) as String) \(converterItem.currencyName)"
@@ -149,13 +161,13 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
      */
     
     func initWithBaseAndReload(currencyName: String, country: String, code: String, symbol: String, amount: String) {
-        self.baseConverterItem = ConverterItem(currencyName: currencyName, country: country, code: code, symbol: symbol, amount: self.baseAmountTextField.text!)
+        self.baseConverterItem = ConverterItem(currencyName: currencyName, country: country, code: code, symbol: symbol, amount: amount)
         
         self.baseCountryImageView.image = UIImage.init(named: "\(self.baseConverterItem.country).png")
         self.baseCountryCodeLabel.text = self.baseConverterItem.code
         self.baseCountryNameLabel.text = self.baseConverterItem.country
         self.baseCurrencySymbolLabel.text = self.baseConverterItem.symbol
-        self.baseAmountTextField.text = self.baseConverterItem.amount
+        self.baseConverterItem.amount = self.baseAmountTextField.text!
         
         self.mainTableView.startPullToRefresh()
     }

@@ -58,10 +58,10 @@ class ConverterInteractor: ConverterInteractorInputProtocol
     
     func returnConverterItemsWithBaseConverter(baseConverterItem : ConverterItem) -> [ConverterItem] {
         var baseAmount = baseConverterItem.amount
-        if baseConverterItem.amount.isEmpty {
+        if (baseConverterItem.amount.isEmpty || Double(baseConverterItem.amount) == 0 || Double(baseConverterItem.amount) == nil) {
             baseAmount = "1"
         } else {
-            baseAmount = baseConverterItem.amount
+            baseAmount = baseConverterItem.amount.replacingOccurrences(of: ",", with: "")
         }
         
         var convertedList = baseConverterItem.convertedList
