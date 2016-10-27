@@ -8,6 +8,12 @@ This app is available in the [AppStore](https://itunes.apple.com/us/app/currency
 
 Calculates money quick and easy way to see live foreign exchange rates.
 
+#Requirements
+
+* iOS 9.0+ / macOS 10.11+
+* Xcode 8.0+
+* Swift 3.0+
+
 #Setup
 * Run ```pod install```
 * Run ```open CurrencyConverter.xcworkspace```
