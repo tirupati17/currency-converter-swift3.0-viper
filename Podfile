@@ -7,7 +7,7 @@ def pods
     pod 'Crashlytics'
     pod 'Appirater', '~> 2.0.4'
     pod 'Google-Mobile-Ads-SDK', '~> 7.5'
-    pod 'Alamofire', '~> 4.0'
+    pod 'Alamofire', '~> 4.0.1'
     pod 'SwiftyJSON'
     pod 'Refresher'
     pod 'Mixpanel-swift'
