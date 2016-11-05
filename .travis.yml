@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode8
+xcode_project: CurrencyConverter.xcodeproj
+xcode_scheme: CurrencyConverter
+xcode_sdk: iphonesimulator10.0
