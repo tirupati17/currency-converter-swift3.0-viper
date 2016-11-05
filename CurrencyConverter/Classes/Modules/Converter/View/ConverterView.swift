@@ -7,6 +7,7 @@ import Foundation
 import UIKit
 import Refresher
 import GoogleMobileAds
+import Mixpanel
 
 extension Collection {
     subscript (safe index: Index) -> Iterator.Element? {
@@ -52,7 +53,7 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         self.presenter?.loadView()
         
         //google ads
-        bannerView.adUnitID = "ca-app-pub-4961045217927492~1854345968"
+        bannerView.adUnitID = "ca-app-pub-4961045217927492/3331079163"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -122,7 +123,7 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
             amountTextField.text = self.formatCurrency(converterItem.convertedAmount)
             codeLabel.text = converterItem.code
             symbolLabel.text = converterItem.symbol
-            countryNameLabel.text = "1 \(self.baseConverterItem.code) = \( NSString(format : "%.2f", Double(converterItem.amount)!) as String) \(converterItem.currencyName)"
+            countryNameLabel.text = "1 \(self.baseConverterItem.code) = \( NSString(format : "%.4f", Double(converterItem.amount)!) as String) \(converterItem.currencyName)"
             imageView.image = UIImage.init(named: "\(converterItem.country).png")
         }
     }
@@ -130,10 +131,20 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         if let converterItem = self.baseConverterItem.convertedList[safe: (indexPath as NSIndexPath).row] {
             self.baseConverterItem.amount = baseAmountTextField.text!
+            Mixpanel.mainInstance().track(event: "MainScreenCurrencySelection",
+                                          properties: ["Code" : converterItem.code, "CurrencyName" : converterItem.currencyName])
             self.initWithBaseAndReload(currencyName: converterItem.currencyName, country: converterItem.country, code: converterItem.code, symbol: converterItem.symbol, amount: self.baseConverterItem.amount)
         }
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return bannerView;
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50.0;
+    }
+
     // MARK: UITextFieldDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {

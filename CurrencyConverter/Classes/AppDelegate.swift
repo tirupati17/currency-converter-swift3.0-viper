@@ -10,6 +10,8 @@ import UIKit
 import Appirater
 import Fabric
 import Crashlytics
+import Mixpanel
+import Flurry_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -47,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func defaultInitialization() {
         Fabric.with([Crashlytics.self])
         Fabric.with([Answers.self])
+        Flurry.startSession("2QTRCVFW7DPRPNCNBYSS");
+        Mixpanel.initialize(token:"043e30da77767f24cd686e4a3d6efab9")
         
         Appirater.setAppId("1163490933")
         Appirater.setDaysUntilPrompt(7)
@@ -56,6 +60,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Appirater.setDebug(false)
         Appirater.appLaunched(true)
     }
-
 }
 

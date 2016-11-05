@@ -5,6 +5,7 @@
 
 import Foundation
 import UIKit
+import Mixpanel
 
 class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldDelegate, UISearchBarDelegate
 {
@@ -30,6 +31,12 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
     
     func configureView() {
         navigationItem.title = "Currency List"
+    }
+    
+    @IBAction func cancelAction(sender : UIButton) {
+        self.dismiss(animated: true) { 
+            
+        };
     }
     
     func reloadTableViewWithCurrencyList(_ currencyList : [CurrencyListItem]) {
@@ -89,6 +96,8 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
             currencyListItems = self.listArray
         }
         if let currencyListItem = currencyListItems[safe: (indexPath as NSIndexPath).row] {
+            Mixpanel.mainInstance().track(event: "CurrencyListSelection",
+                                          properties: ["Code" : currencyListItem.code, "CurrencyName" : currencyListItem.currencyName])
             self.presenter?.selectCurrencyListItem(currencyListItem)
         }
     }
