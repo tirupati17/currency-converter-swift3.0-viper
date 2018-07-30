@@ -1,6 +1,7 @@
 ![Language](https://img.shields.io/badge/language-Swift%203.0-orange.svg)
 ![License](https://img.shields.io/github/license/JakeLin/SwiftWeather.svg?style=flat)
 [![Build Status](https://travis-ci.org/tirupati17/currency-converter-swift3.0-viper.svg?branch=master)](https://travis-ci.org/tirupati17/currency-converter-swift3.0-viper)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3602b30b128d40bab1800d9adf5e7554)](https://www.codacy.com/project/tirupati17/currency-converter-swift3.0-viper/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tirupati17/currency-converter-swift3.0-viper&amp;utm_campaign=Badge_Grade_Dashboard)
 
 ![Currency Converter - Free and Quick Converter](https://raw.githubusercontent.com/tirupati17/currency-converter-swift3.0-viper/master/CurrencyConverter/Resources/iphone_5s.png)
 
