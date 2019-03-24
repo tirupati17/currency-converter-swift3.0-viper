@@ -234,6 +234,7 @@
 		D561869C1D9C5471003F95F2 /* CurrencyListWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56186841D9C5471003F95F2 /* CurrencyListWireFrame.swift */; };
 		D5DAAF7122480A55002226B2 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAAF7022480A55002226B2 /* CurrencyConverterUITests.swift */; };
 		D5DAAF7F22480B8E002226B2 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAAF7E22480B8E002226B2 /* CurrencyConverterTests.swift */; };
+		D5DAAF8722480DCD002226B2 /* AppDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAAF8622480DCD002226B2 /* AppDelegateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -489,6 +490,7 @@
 		D5DAAF7C22480B8E002226B2 /* CurrencyConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5DAAF7E22480B8E002226B2 /* CurrencyConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterTests.swift; sourceTree = "<group>"; };
 		D5DAAF8022480B8E002226B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5DAAF8622480DCD002226B2 /* AppDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateTests.swift; sourceTree = "<group>"; };
 		F42AEC080ED3978D7B35E875 /* Pods_CurrencyConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -825,18 +827,18 @@
 		D56186411D9C446E003F95F2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				D56186451D9C446E003F95F2 /* ThirdParty */,
+				D56186451D9C446E003F95F2 /* CustomClass */,
 				D56186481D9C446E003F95F2 /* View */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		D56186451D9C446E003F95F2 /* ThirdParty */ = {
+		D56186451D9C446E003F95F2 /* CustomClass */ = {
 			isa = PBXGroup;
 			children = (
 				D52D24C41DA791B200EF6EAB /* PacmanAnimator.swift */,
 			);
-			path = ThirdParty;
+			path = CustomClass;
 			sourceTree = "<group>";
 		};
 		D56186481D9C446E003F95F2 /* View */ = {
@@ -1028,6 +1030,7 @@
 			children = (
 				D5DAAF7E22480B8E002226B2 /* CurrencyConverterTests.swift */,
 				D5DAAF8022480B8E002226B2 /* Info.plist */,
+				D5DAAF8622480DCD002226B2 /* AppDelegateTests.swift */,
 			);
 			path = CurrencyConverterTests;
 			sourceTree = "<group>";
@@ -1394,20 +1397,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Appirater/Appirater.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel-swift/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/Refresher/Refresher.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${PODS_ROOT}/UserExperior/UserExperior.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Appirater.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Refresher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UserExperior.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1504,6 +1503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5DAAF8722480DCD002226B2 /* AppDelegateTests.swift in Sources */,
 				D5DAAF7F22480B8E002226B2 /* CurrencyConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

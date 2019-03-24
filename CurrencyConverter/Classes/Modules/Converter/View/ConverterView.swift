@@ -177,15 +177,19 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     }
     
     func reloadTableViewWithData(_ converterItems: [ConverterItem]) {
-        self.mainTableView.stopPullToRefresh()
-        
-        self.baseConverterItem.convertedList = converterItems
-        self.mainTableView.reloadData()
-        self.baseAmountTextField.becomeFirstResponder()
+        DispatchQueue.main.async {
+            self.mainTableView.stopPullToRefresh()
+            
+            self.baseConverterItem.convertedList = converterItems
+            self.mainTableView.reloadData()
+            self.baseAmountTextField.becomeFirstResponder()
+        }
     }
     
     func noContentFromServer() {
-        self.mainTableView.stopPullToRefresh()
+        DispatchQueue.main.async {
+            self.mainTableView.stopPullToRefresh()
+        }
     }
 }
 

@@ -4,26 +4,23 @@
 //
 
 import Foundation
-import Alamofire
-import SwiftyJSON
 
 class ConverterAPIDataManager: ConverterAPIDataManagerInputProtocol
 {
     init() {}
     
     func fetchCurrencyFromServerWithData(_ baseCurrencyCode: String, completion: ((AnyObject) -> Void)!, failed:((AnyObject) -> Void)!) {
-        Alamofire.request("https://frankfurter.app/latest?base=\(baseCurrencyCode)").responseJSON { response in
-            print(String(describing: response.request?.description))
-            if response.result.isSuccess {
-                do {
-                    let jsonObject = try JSON(data: response.data!)
-                    completion?(jsonObject as AnyObject)
-                } catch {
-                    failed?(response.result.error as AnyObject)
-                }
+        URLSession.init(configuration: .default).dataTask(with: URL.init(string: "https://frankfurter.app/latest?base=\(baseCurrencyCode)")!) { (data, response, error) in
+            if error != nil {
+                failed?(error as AnyObject)
             } else {
-                failed?(response.result.error as AnyObject)
+                do {
+                    let jsonObject = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                    completion?(jsonObject as AnyObject)
+                } catch let myJSONError {
+                    failed?(myJSONError as AnyObject)
+                }
             }
-        }
+        }.resume()
     }
 }

@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class ConverterInteractor: ConverterInteractorInputProtocol
 {
@@ -29,15 +28,16 @@ class ConverterInteractor: ConverterInteractorInputProtocol
             self.APIDataManager?.fetchCurrencyFromServerWithData(baseConverterItem.code,
                                                                  completion:
                 { response in
-                    var exchangeData = response as! SwiftyJSON.JSON
+                    var exchangeData = response as! [String: AnyObject]
                     var converterItems = [ConverterItem]()
                     
                     let path = Bundle.main.path(forResource: "CountryData", ofType: "plist")
-                    let listArray = NSArray(contentsOfFile: path!) as NSArray!
+                    let data = try! Data(contentsOf: URL.init(fileURLWithPath: path!))
+                    let listArray = try! PropertyListSerialization.propertyList(from: data, options: [], format: nil) as! NSArray
                     
-                    for (key, value) in exchangeData["rates"] {
-                        let filteredCountryData = listArray?.filtered(using: NSPredicate(format : "code = %@", key))
-                        for filteredCountryDataObject in filteredCountryData! {
+                    for (key, value) in exchangeData["rates"] as! [String: AnyObject] {
+                        let filteredCountryData = listArray.filtered(using: NSPredicate(format : "code = %@", key))
+                        for filteredCountryDataObject in filteredCountryData {
                             let object = filteredCountryDataObject as? [String:Any]
                             let converterItem = ConverterItem(currencyName: object!["name"] as! String, country: object!["country"] as! String, code: key, symbol: object!["symbol"] as! String, amount: value.stringValue)
                             converterItems.append(converterItem)
