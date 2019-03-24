@@ -1,5 +1,7 @@
-language: objective-c
-osx_image: xcode8
+language: swift
+osx_image: xcode10.1
 xcode_project: CurrencyConverter.xcodeproj
 xcode_scheme: CurrencyConverter
 xcode_sdk: iphonesimulator10.0
+before_install:
+  - pod repo update
