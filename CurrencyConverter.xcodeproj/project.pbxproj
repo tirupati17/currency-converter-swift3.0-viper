@@ -985,6 +985,7 @@
 				D56184191D9BAFE4003F95F2 /* Resources */,
 				27636658A81B868E165E0E73 /* Embed Pods Frameworks */,
 				32F2192F292647290002B4FC /* [CP] Embed Pods Frameworks */,
+				D5DAAF692247E9DE002226B2 /* Xcode 10 created script phase */,
 			);
 			buildRules = (
 			);
@@ -1307,6 +1308,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		D5DAAF692247E9DE002226B2 /* Xcode 10 created script phase */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Xcode 10 created script phase";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		DC0831101BFA12FD6A07DBE9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
