@@ -1,12 +1,11 @@
 //
-// Created by VIPER
-// Copyright (c) 2016 VIPER. All rights reserved.
+// Created by Tirupati Balan
+// Copyright (c) 2019 Celerstudio. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import Refresher
-import GoogleMobileAds
 import Mixpanel
 
 extension Collection {
@@ -15,7 +14,7 @@ extension Collection {
     }
 }
 
-class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegate
+class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource
 {
     var presenter: ConverterPresenterProtocol?
     var baseConverterItem : ConverterItem!
@@ -26,7 +25,6 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     @IBOutlet var baseCountryCodeLabel : UILabel!
     @IBOutlet var baseCountryNameLabel : UILabel!
     @IBOutlet var baseCurrencySymbolLabel : UILabel!
-    @IBOutlet weak var bannerView: GADBannerView!
 
     required init(coder decoder: NSCoder) {
         super.init(coder: decoder)!
@@ -51,11 +49,6 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         navigationItem.title = "Currency Converter"
         self.addPullToRefresh()
         self.presenter?.loadView()
-        
-        //google ads
-        bannerView.adUnitID = "ca-app-pub-4961045217927492/3331079163"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
     }
     
     func addPullToRefresh() {
@@ -89,7 +82,7 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     
     // MARK: UITableViewDelegate
 
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         let numberOfSections = 1
         return numberOfSections
     }
@@ -98,11 +91,11 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         return self.baseConverterItem.convertedList.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 65
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var identifier : String
         identifier = "cell"
         
@@ -128,7 +121,7 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let converterItem = self.baseConverterItem.convertedList[safe: (indexPath as NSIndexPath).row] {
             self.baseConverterItem.amount = baseAmountTextField.text!
             Mixpanel.mainInstance().track(event: "MainScreenCurrencySelection",
@@ -138,11 +131,11 @@ class ConverterView: UIViewController, ConverterViewProtocol, UITextFieldDelegat
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return bannerView;
+        return nil;
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 50.0;
+        return 0.0;
     }
 
     // MARK: UITextFieldDelegate

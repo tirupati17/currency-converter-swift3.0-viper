@@ -1,13 +1,13 @@
 //
-// Created by VIPER
-// Copyright (c) 2016 VIPER. All rights reserved.
+// Created by Tirupati Balan
+// Copyright (c) 2019 Celerstudio. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import Mixpanel
 
-class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldDelegate, UISearchBarDelegate
+class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource
 {
     var presenter: CurrencyListPresenterProtocol?
     var listArray = [CurrencyListItem]()
@@ -44,7 +44,7 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
         self.listTableView.reloadData()
     }
     
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         let numberOfSections = 1
         return numberOfSections
     }
@@ -57,11 +57,11 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:UITableViewCell = (self.listTableView!.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell)
         
         self.configureCellForTableView(tableView, withCell: cell, withIndexPath: indexPath)
@@ -88,7 +88,7 @@ class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldD
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var currencyListItems = [CurrencyListItem]()
         if isSearch {
             currencyListItems = self.searchedListArray

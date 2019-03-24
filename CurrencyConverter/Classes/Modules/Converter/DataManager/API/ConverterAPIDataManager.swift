@@ -1,6 +1,6 @@
 //
-// Created by VIPER
-// Copyright (c) 2016 VIPER. All rights reserved.
+// Created by Tirupati Balan
+// Copyright (c) 2019 Celerstudio. All rights reserved.
 //
 
 import Foundation
@@ -12,11 +12,15 @@ class ConverterAPIDataManager: ConverterAPIDataManagerInputProtocol
     init() {}
     
     func fetchCurrencyFromServerWithData(_ baseCurrencyCode: String, completion: ((AnyObject) -> Void)!, failed:((AnyObject) -> Void)!) {
-        Alamofire.request("http://api.fixer.io/latest?base=\(baseCurrencyCode)").responseJSON { response in
-            print(response.request?.description)
+        Alamofire.request("https://frankfurter.app/latest?base=\(baseCurrencyCode)").responseJSON { response in
+            print(String(describing: response.request?.description))
             if response.result.isSuccess {
-                let jsonObject = JSON(data: response.data!)
-                completion?(jsonObject as AnyObject)
+                do {
+                    let jsonObject = try JSON(data: response.data!)
+                    completion?(jsonObject as AnyObject)
+                } catch {
+                    failed?(response.result.error as AnyObject)
+                }
             } else {
                 failed?(response.result.error as AnyObject)
             }
