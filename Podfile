@@ -5,7 +5,7 @@ def pods
     pod 'Appirater'
     pod 'Refresher'
     pod 'Mixpanel-swift'
-    pod 'UserExperior', '3.0.4' #Crash report along with user session video recording. Find out more at https://www.userexperior.com/
+    pod 'UserExperior', '4.0.1' #Crash report along with user session video recording. Find out more at https://www.userexperior.com/
 end
 
 target 'CurrencyConverter' do

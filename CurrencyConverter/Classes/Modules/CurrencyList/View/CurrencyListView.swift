@@ -5,7 +5,6 @@
 
 import Foundation
 import UIKit
-import Mixpanel
 
 class CurrencyListView: UIViewController, CurrencyListViewProtocol, UITextFieldDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource
 {

@@ -5,8 +5,6 @@
 
 import Foundation
 import UIKit
-import Refresher
-import Mixpanel
 
 extension Collection {
     subscript (safe index: Index) -> Iterator.Element? {

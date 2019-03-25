@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Appirater
-import Mixpanel
-import UserExperior
+@_exported import Appirater
+@_exported import Mixpanel
+@_exported import UserExperior
+@_exported import Refresher
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
