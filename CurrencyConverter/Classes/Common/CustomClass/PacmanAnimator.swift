@@ -22,7 +22,6 @@
 // SOFTWARE.
 
 import Foundation
-import Refresher
 import QuartzCore
 import UIKit
 
