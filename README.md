@@ -9,30 +9,30 @@ Currency Converter - Free and Quick Converter calculates money quick and easy wa
 
 This app is available in the [AppStore](https://itunes.apple.com/us/app/currency-converter-free-quick/id1163490933?ls=1&mt=8). Learn more [here](http://www.celerstudio.com).
 
-#Description
+# Description
 
 Calculates money quick and easy way to see live foreign exchange rates.
 
-#Requirements
+# Requirements
 
 * iOS 9.0+ / macOS 10.11+
 * Xcode 9.4+
 
-#Setup
+# Setup
 * Run ```pod install```
 * Run ```open CurrencyConverter.xcworkspace```
 
-#Contribute
+# Contribute
 Want to contribute? I would really appreciate a hand with the development to add more features in this app.
 
 Feel free to Fork, edit, then pull!
 
-###Contributors
+### Contributors
 
 @creative (App icon)
 - Sagar Lengade (https://www.linkedin.com/in/sagarlengade)
 
-#MIT License
+# MIT License
 
 	Copyright (c) 2016 CelerStudio. All rights reserved.
 
